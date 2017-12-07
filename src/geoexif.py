@@ -28,9 +28,10 @@ class GeoExif(object):
     def __init__(self, picture):
         self.picPath = picture
         self.xmpOption = False
-        if self.xmpOption == True:
+        if self.xmpOption:
+# was if self.xmpOption == True:
             if os.path.basename(picture).find(".CRW") > 0\
-            or os.path.basename(picture).find(".CR2") > 0:
+                or os.path.basename(picture).find(".CR2") > 0:
                 self.sidecarFile = os.path.splitext(picture)[0]+".xmp"
 # print ">>>>> self.sidecarFile",self.sidecarFile
             else:
@@ -190,7 +191,8 @@ class GeoExif(object):
 
         if elevation != "None":
             if float(elevation) < 0:
-                altRef = 1 # "Below Sea Level"
+                altRef = 1 
+                # "Below Sea Level"
                 elevation = str(abs(float(elevation)))
 # print ">>> altRef=",altRef
 # print ">>> elevation ", elevation
