@@ -24,7 +24,7 @@ import sys
 class GeoExif(object):
     """
     A class to read and write few EXIF tags in .jpg pictures which can be
-    useful for geolalisation scripts.
+    useful for geolocalisation scripts.
     """
     def __init__(self, picture):
         self.picPath = picture
@@ -87,7 +87,7 @@ class GeoExif(object):
         return [date, time, width, height]
 
     def readLatitude(self):
-        """read the latitute tag is available and return a float"""
+        """read the latitude tag if available and return a float"""
         result = os.popen('%s -n -GPSLatitude -GPSLatitudeRef  "%s"  ' %
                           (self.exifcmd, self.picPath)).read().split("\n")
         # print result
@@ -142,7 +142,7 @@ class GeoExif(object):
         """
         write the latitude value given in argument in the EXIF
         positive means nothern latitudes
-        nagative means southest latitudes
+        negative means southest latitudes
         lat can be a float or a string
         """
         option = ''
@@ -243,6 +243,8 @@ if __name__ == "__main__":
 #    mypicture.writeLongitude(7.222333)
 #    mypicture.writeLatitude(48.419973)
     print mypicture.readDateTimeSize()
+#    print mypicture.readLatLong()           wierd output - 
+    print mypicture.readExifAll()
 # mypicture.writeLatLong(7.222333,48.419973,"N","E",True)
 # latitude=mypicture.readLatitude()
 # longitude=mypicture.readLongitude()
